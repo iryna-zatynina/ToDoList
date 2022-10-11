@@ -1,0 +1,25 @@
+.AddToDo {
+  margin-top: 40px;
+
+  h4 {
+    margin-bottom: 10px;
+  }
+
+  input {
+    width: 300px;
+    height: 30px;
+    font-size: 16px;
+  }
+
+  button {
+    border: none;
+    background: violet;
+    color: white;
+    padding: 10px 30px;
+    font-size: 16px;
+    border-radius: 5px;
+    display: block;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+}
