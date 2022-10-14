@@ -1,0 +1,22 @@
+.OtherToDo {
+  margin: 30px;
+  p {
+    margin-bottom: 10px;
+  }
+  .index {
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: underline;
+  }
+  .title {
+    font-style: italic;
+    color: darkviolet;
+  }
+  .done {
+    color: lawngreen;
+  }
+  .notDone {
+    color: red;
+  }
+;
+}

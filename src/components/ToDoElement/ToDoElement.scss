@@ -1,6 +1,6 @@
 .ToDoElement {
   border: 1px solid darkgrey;
-  max-width: 400px;
+  max-width: 500px;
   padding: 5px 20px;
   display: flex;
   justify-content: space-between;
@@ -24,5 +24,15 @@
 
   .toDoElementRemoveIcon {
     cursor: pointer;
+    margin-left: 10px;
+  }
+  .toggleInput {
+    width: 250px;
+  }
+  .link {
+    color: #080705;
+    text-decoration: none;
+    margin-bottom: 0;
+    max-width: 350px;
   }
 }

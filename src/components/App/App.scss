@@ -5,6 +5,11 @@
     font-family: "Roboto", sans-serif;
 }
 
-.App {
-    padding: 30px;
+.link {
+    display: block;
+    margin-bottom: 20px;
+    a {
+        text-decoration: underline;
+        color: blue;
+    }
 }
