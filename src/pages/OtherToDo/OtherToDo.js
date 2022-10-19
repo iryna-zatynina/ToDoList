@@ -6,21 +6,17 @@ import "./OtherToDo.scss"
 
 const OtherToDo = () => {
     const id = useParams().id;
-    const [index, setIndex] = useState();
-    const [title, setTitle] = useState();
-    const [isCompleted, setIsCompleted] = useState();
     const [loader, setLoader] = useState(false)
+    const [toDo, setToDo] = useState({})
 
     useEffect(() => {
         setLoader(true);
         axios.get(`https://jsonplaceholder.typicode.com/todos/${id}`)
             .then((response) => {
                 setLoader(false)
-                setIndex(response.data.id)
-                setTitle(response.data.title)
-                setIsCompleted(response.data.completed)
+                setToDo(response.data)
             })
-    }, [])
+    }, [id])
 
 
     return (
@@ -28,13 +24,17 @@ const OtherToDo = () => {
             <div className='OtherToDo'>
                 <span className="link"><Link to={"/"}>Перейти на сторінку списку завдань</Link></span>
                 <div>
-                    <p className="index">Задача № {index}</p>
-                    <p className="title">{title}</p>
-                    <p>Статус: <span className={isCompleted ? "done" : "notDone"}>{isCompleted ? "выполнена" : "невыполнена" }</span></p>
+                    <p className="index">Задача № {toDo.index}</p>
+                    <p className="title">{toDo.title}</p>
+                    <p>Статус:
+                        {toDo.isCompleted ?
+                            <span className="done">выполнена</span> :
+                            <span className="notDone">невыполнена</span>}
+                    </p>
                 </div>
             </div>
 
-            {loader && <Loader />}
+            {loader && <Loader/>}
         </>
 
     );
