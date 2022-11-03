@@ -6,6 +6,7 @@ import "./OtherToDo.scss"
 
 const OtherToDo = () => {
     const id = useParams().id;
+    console.log(id)
     const [loader, setLoader] = useState(false)
     const [toDo, setToDo] = useState({})
 

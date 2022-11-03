@@ -3,23 +3,40 @@ import "./ToDoElement.scss";
 import PropTypes from "prop-types";
 import {MdRemoveCircleOutline} from "react-icons/md";
 import {BsFillPencilFill} from "react-icons/bs";
-import AppContext from "../../context/AppContext";
 import {Link} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {changeCompletedTodoAction, deleteTodoAction} from "../../store/todosReducer";
 
 
 const ToDoElement = ({toDo}) => {
 
-    const {changeCompletedToDoElement, deleteToDoElement} = useContext(AppContext)
+    const dispatch = useDispatch()
+    const todos = useSelector(state => state.todosReducer.todos)
+
     const [toggleInput, setToggleInput] = useState(false);
     const [input, setInput] = useState(toDo.title);
 
-
+    const deleteToDoElement = (id) => {
+        dispatch(deleteTodoAction(id))
+    }
+    const changeCompletedToDoElement = (id) => {
+        const toDoList = todos.map((toDo) => {
+            if (toDo.id === id) {
+                toDo.completed = !toDo.completed
+            }
+            return toDo;
+        })
+        dispatch(changeCompletedTodoAction(toDoList))
+    }
+    const changeTodoName = (e) => {
+        setInput(toDo.title = e.target.value)
+    }
 
     return (
         <li className="ToDoElement">
             <div>
                 <input type="checkbox" defaultChecked={toDo.completed} onClick={() => changeCompletedToDoElement(toDo.id)}/>
-                {toggleInput ? <input className='toggleInput' type="text" value={input} onChange={e => setInput(toDo.title = e.target.value)} /> :
+                {toggleInput ? <input className='toggleInput' type="text" value={input} onChange={changeTodoName} /> :
                     <span className={toDo.completed ? "toDoElementCompleted" : ""}>
                         <Link  className="link" to={`/todo${toDo.id}`}>{toDo.title}</Link>
                     </span>}

@@ -1,7 +1,7 @@
 import React, {useEffect, useMemo, useRef, useState} from 'react';
-import {Link} from "react-router-dom";
+
 import "./Posts.scss"
-// import Modal from "../../components/Modal/Modal";
+
 import {ProgressBar} from "react-bootstrap";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';

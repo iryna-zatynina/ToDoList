@@ -1,14 +1,15 @@
 import React, {useContext, useState} from "react";
 import ToDoElement from "../ToDoElement/ToDoElement";
 import AppContext from "../../context/AppContext";
+import {useSelector} from "react-redux";
 
 const ToDoList = () => {
 
-    const {toDoes} = useContext(AppContext)
+    const todos = useSelector(state => state.todosReducer.todos)
 
     return (
         <ul>
-            {toDoes.map((toDo) => {
+            {todos.map((toDo) => {
                 return <ToDoElement toDo={toDo} key={toDo.id}  />
             })}
         </ul>
