@@ -1,7 +1,10 @@
 import React,{Fragment} from 'react';
 import "./Modal.scss";
 
-const Modal = ({closeModal}) => {
+interface ModalProps {
+    closeModal: (preState: boolean) => void
+}
+const Modal = ({closeModal}: ModalProps) => {
     return (
         <Fragment>
             <div className="Modal">

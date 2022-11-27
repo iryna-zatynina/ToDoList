@@ -1,22 +1,21 @@
 import './ToDoPage.scss';
 import ToDoList from '../../components/ToDoList/ToDoList';
-import AppContext from "../../context/AppContext";
 import {useCallback, useEffect, useState} from "react";
 import AddToDo from "../../components/AddToDo/AddToDo";
-import nextId from "react-id-generator";
 import axios from "axios";
 import Loader from "../../components/Loader/Loader";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {getTodosAction} from "../../store/todosReducer";
+import {getTodosAction} from "../../store/todos/todosReducer";
+import {Todo} from "../../components/ToDoElement/ToDoElement";
 
 
 function ToDoPage() {
 
     const dispatch = useDispatch()
-    const todos = useSelector(state => state.todosReducer.todos)
+    const todos = useSelector((state: any) => state.todosReducer.todos)
 
-    const setTodos = useCallback((todos) => {
+    const setTodos = useCallback((todos: Todo[]) => {
         dispatch(getTodosAction(todos))
     }, [dispatch])
 
@@ -29,8 +28,8 @@ function ToDoPage() {
             })
     }, [setTodos])
 
-    const [toDoName, setToDoName] = useState('')
-    const [loader, setLoader] = useState(false)
+    const [toDoName, setToDoName] = useState<string>('')
+    const [loader, setLoader] = useState<boolean>(false)
 
 
 
@@ -41,7 +40,6 @@ function ToDoPage() {
     }
 
     return (
-        // <AppContext.Provider value={{toDoes, changeCompletedToDoElement, deleteToDoElement}}>
         <>
             <div className="ToDoPage">
                 <span className="link"><Link to={"/posts"}>Перейти на сторінку постів</Link></span>
@@ -54,7 +52,6 @@ function ToDoPage() {
             </div>
             {loader && <Loader />}
         </>
-        // </AppContext.Provider>
     );
 }
 

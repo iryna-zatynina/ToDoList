@@ -1,15 +1,17 @@
-import React, {useCallback} from 'react';
-import "./AddToDo.scss"
-import PropTypes from "prop-types";
-import ToDoElement from "../ToDoElement/ToDoElement";
+import React from 'react';
+import "./AddToDo.scss";
 import {useDispatch, useSelector} from "react-redux";
 import nextId from "react-id-generator";
-import {addTodoAction} from "../../store/todosReducer";
+import {addTodoAction} from "../../store/todos/todosReducer";
 
-const AddToDo = ({setToDoName, toDoName}) => {
+interface AddToDoProp {
+    setToDoName: (prevState: string) => void,
+    toDoName: string
+}
+const AddToDo = ({setToDoName, toDoName}: AddToDoProp) => {
 
     const dispatch = useDispatch()
-    const todos = useSelector(state => state.todosReducer.todos)
+    const todos = useSelector((state: any) => state.todosReducer.todos)
 
     const createNewToDo = () => {
         if (toDoName.length > 2) {
@@ -33,11 +35,5 @@ const AddToDo = ({setToDoName, toDoName}) => {
         </div>
     );
 };
-
-AddToDo.propTypes = {
-    toDoName: PropTypes.string.isRequired,
-    setToDoName: PropTypes.func,
-    createNewToDo: PropTypes.func,
-}
 
 export default AddToDo;

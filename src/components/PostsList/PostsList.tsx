@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PostsList = () => {
+const PostsList: React.FC = () => {
     return (
         <ul>
             <li>post1</li>

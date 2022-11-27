@@ -1,5 +1,4 @@
 import React, {useEffect, useMemo, useRef, useState} from 'react';
-
 import "./Posts.scss"
 
 import {ProgressBar} from "react-bootstrap";
@@ -9,6 +8,7 @@ import {useTranslation} from "react-i18next";
 
 const PostsList = React.lazy(() => new Promise((resolve) => {
     setTimeout(() => {
+        // @ts-ignore
         resolve(import("../../components/PostsList/PostsList"))
     }, 2000)
 }))
@@ -22,16 +22,16 @@ const Posts = () => {
         console.log(span.current);
     }, [])
 
-    const [showModal, setShowModal] = useState(false);
-    const [number, setNumber] = useState(20);
-    const [colored, setColored] = useState(true);
-    const [show, setShow] = useState(false);
+    const [showModal, setShowModal] = useState<boolean>(false);
+    const [number, setNumber] = useState<number>(20);
+    const [colored, setColored] = useState<boolean>(true);
+    const [show, setShow] = useState<boolean>(false);
 
     const styles = {
         color: colored ? "red" : "blue"
     }
 
-    const complexCulculate = (num) => {
+    const complexCulculate = (num: number): number => {
         let i = 0;
         while (i < 1000000000) i++;
         return num * 2
@@ -41,7 +41,7 @@ const Posts = () => {
         return complexCulculate(number)
     }, [number])
 
-    const span = useRef();
+    const span = useRef<HTMLInputElement | null>(null);
     const now = 10;
 
     const handleClose = () => setShow(false);

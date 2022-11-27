@@ -1,11 +1,10 @@
 import React from 'react';
-import ToDoPage from "../../pages/ToDoPage/ToDoPage";
 import "./App.scss"
 import useRoutes from "../../hooks/route.hook";
 import {BrowserRouter} from "react-router-dom";
 import "../../i18n";
 
-const App = () => {
+const App: React.FC = () => {
 
     const routes = useRoutes()
 

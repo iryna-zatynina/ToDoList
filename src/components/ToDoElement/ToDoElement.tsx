@@ -1,26 +1,34 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useState} from "react";
 import "./ToDoElement.scss";
-import PropTypes from "prop-types";
 import {MdRemoveCircleOutline} from "react-icons/md";
 import {BsFillPencilFill} from "react-icons/bs";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {changeCompletedTodoAction, deleteTodoAction} from "../../store/todosReducer";
+import {changeCompletedTodoAction, deleteTodoAction} from "../../store/todos/todosReducer";
+import {StoreTypes} from "../../store";
 
+interface ToDoElementProps {
+    toDo: Todo
+}
+export interface Todo {
+    title: string,
+    id: number | string,
+    completed: boolean,
+}
 
-const ToDoElement = ({toDo}) => {
+const ToDoElement = ({toDo}: ToDoElementProps) => {
 
     const dispatch = useDispatch()
-    const todos = useSelector(state => state.todosReducer.todos)
+    const todos = useSelector((state: StoreTypes) => state.todosReducer.todos)
 
-    const [toggleInput, setToggleInput] = useState(false);
-    const [input, setInput] = useState(toDo.title);
+    const [toggleInput, setToggleInput] = useState<boolean>(false);
+    const [input, setInput] = useState<string>(toDo.title);
 
-    const deleteToDoElement = (id) => {
+    const deleteToDoElement = (id: string | number) => {
         dispatch(deleteTodoAction(id))
     }
-    const changeCompletedToDoElement = (id) => {
-        const toDoList = todos.map((toDo) => {
+    const changeCompletedToDoElement = (id: string | number) => {
+        const toDoList = todos.map((toDo: Todo) => {
             if (toDo.id === id) {
                 toDo.completed = !toDo.completed
             }
@@ -49,12 +57,6 @@ const ToDoElement = ({toDo}) => {
     )
 }
 
-ToDoElement.propTypes = {
-    toDo: PropTypes.shape({
-        title: PropTypes.string,
-        id: PropTypes.number,
-        completed: PropTypes.bool,
-    }).isRequired
-}
+
 
 export default ToDoElement;

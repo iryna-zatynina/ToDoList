@@ -4,11 +4,21 @@ import axios from "axios";
 import Loader from "../../components/Loader/Loader";
 import "./OtherToDo.scss"
 
+interface OtherTodo {
+    title: string,
+    index: number | string,
+    isCompleted: boolean,
+}
+
 const OtherToDo = () => {
     const id = useParams().id;
     console.log(id)
-    const [loader, setLoader] = useState(false)
-    const [toDo, setToDo] = useState({})
+    const [loader, setLoader] = useState<boolean>(false)
+    const [toDo, setToDo] = useState<OtherTodo>({
+        title: "",
+        index: "",
+        isCompleted: false,
+    })
 
     useEffect(() => {
         setLoader(true);
